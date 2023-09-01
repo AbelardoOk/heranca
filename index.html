@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Herança</title>
+  </head>
+  <body>
+    <form onsubmit="return processarFormulario()">
+      <label for="name">Nome: </label>
+      <input type="text" name="name" id="name" />
+      <br />
+
+      <input type="radio" name="account" value="corrente" id="corrente" required />
+      <label for="corrente">conta Corrente</label>
+      <input type="radio" name="account" value="poupanca" id="poupanca" required />
+      <label for="poupanca">conta Poupança</label>
+      <br />
+
+      <input type="submit" value="Enviar" />
+    </form>
+
+    <br />
+
+    <button onclick="">Extrato</button>
+    <div id="textArea"></div>
+  </body>
+  <script src="script.js"></script>
+</html>
