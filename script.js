@@ -1,8 +1,9 @@
-import { Pessoa, Estudante } from "./types";
-
+var textArea = document.getElementById("textArea");
 var cnt;
 
-function processarFormulario() {
+document.getElementById("myForm").addEventListener("submit", function (event) {
+  event.preventDefault();
+
   var nome = document.getElementById("name").value;
   var cpf = document.getElementById("cpf").value;
   var ende = document.getElementById("ende").value;
@@ -10,7 +11,6 @@ function processarFormulario() {
   var telefone = document.getElementById("phone").value;
   var tipo = document.querySelector('input[name="type"]:checked').value;
 
-  var textArea = document.getElementById("textArea");
   var botao = document.getElementById("botao");
 
   switch (tipo) {
@@ -25,15 +25,28 @@ function processarFormulario() {
   }
 
   botao.innerHTML = "<button onclick='exibirInformacoes()'>Exibir Informações</button>";
-  return false;
-}
+});
 
 function exibirInformacoes() {
-  var textArea = document.getElementById("textArea"); // Adicionando textArea aqui
   if (cnt instanceof Estudante) {
-    textArea.innerHTML = `<p>Você possui uma conta de Estudante</p>`;
     cnt.imprimirInformacoes();
   } else if (cnt instanceof Pessoa) {
-    textArea.innerHTML = `<p>Você possui uma conta de Pessoa</p>`;
+    textArea.innerHTML = `<p>Você possui uma conta de Pessoa!</p>`;
+  }
+}
+
+class Pessoa {
+  constructor(nome, cpf, ende, email, tel = null) {
+    this.nome = nome;
+    this.cpf = cpf;
+    this.ende = ende;
+    this.email = email;
+    this.tel = tel;
+  }
+}
+
+class Estudante extends Pessoa {
+  imprimirInformacoes() {
+    textArea.innerHTML = `<p>Você possuí uma conta de estudante!</p> <br> <p>Nome: ${this.nome} </p> <p>CPF: ${this.cpf} </p> <p>Endereço: ${this.ende} </p> <p>E-mail: ${this.email} </p>`;
   }
 }
